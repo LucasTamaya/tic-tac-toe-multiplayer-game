@@ -1,0 +1,38 @@
+@import "../utils/variables";
+
+.startContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.startContainer__title {
+  color: $neutral-color-one;
+}
+
+.startContainer__btn {
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.1s ease;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+    -webkit-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+  }
+}
+
+.btn--start {
+  background-color: $main-color-two;
+  color: $neutral-color-one;
+}
+
+.btn--join {
+  background-color: $neutral-color-one;
+  color: $main-color-two;
+}
