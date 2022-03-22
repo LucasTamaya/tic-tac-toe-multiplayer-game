@@ -1,0 +1,9 @@
+tabs: ["client/src/index.jsx", "README.md", "server/index.js"]
+terminal-one: |
+  cd client
+  yarn install
+  yarn dev
+terminal-two: |
+  cd server
+  yarn install
+  yarn run nodemon
