@@ -1,0 +1,58 @@
+@import "../utils/mixins";
+@import "../utils/variables";
+
+.gridContainer {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  width: 300px;
+  height: 300px;
+
+  &.active {
+    cursor: pointer;
+  }
+
+  &.disable {
+    cursor: not-allowed;
+  }
+}
+
+.box {
+  border: 3px solid $neutral-color-one;
+  @include flexCenter;
+
+  &:first-child {
+    border-left: none;
+    border-top: none;
+  }
+
+  &:nth-child(2) {
+    border-top: none;
+  }
+
+  &:nth-child(3) {
+    border-top: none;
+    border-right: none;
+  }
+
+  &:nth-child(4) {
+    border-left: none;
+  }
+
+  &:nth-child(6) {
+    border-right: none;
+  }
+
+  &:nth-child(7) {
+    border-left: none;
+    border-bottom: none;
+  }
+
+  &:nth-child(8) {
+    border-bottom: none;
+  }
+
+  &:nth-child(9) {
+    border-bottom: none;
+    border-right: none;
+  }
+}

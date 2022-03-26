@@ -53,12 +53,16 @@
 }
 
 .gameContainer{
-
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  padding: 30px;
 }
 
 .gameContainer__h2{
   color: $neutral-color-one;
   font-size: 2.3rem;
+  text-align: center;
 }
 
 .scoreboard__h3{

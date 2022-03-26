@@ -87,13 +87,22 @@ io.on("connection", (socket) => {
   });
 
   socket.on("change_turn", (data) => {
-    const { roomId, index } = data;
+    const { roomId, index, updateGrid, nbCheckBox } = data;
+    console.log(nbCheckBox);
     if (index === 0) {
-      io.to(roomId).emit("change_turn_client", 1);
+      io.to(roomId).emit("change_turn_client", {
+        index: 1,
+        updateGrid: updateGrid,
+        nbCheckBox: nbCheckBox + 1,
+      });
     }
 
     if (index === 1) {
-      io.to(roomId).emit("change_turn_client", 0);
+      io.to(roomId).emit("change_turn_client", {
+        index: 0,
+        updateGrid: updateGrid,
+        nbCheckBox: nbCheckBox + 1,
+      });
     }
   });
 });

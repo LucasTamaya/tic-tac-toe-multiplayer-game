@@ -1,11 +1,12 @@
 import React from "react";
+import "./GameRoom.scss";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import template from "../utils/template";
-import axios from "axios";
 import useClipboard from "react-hook-clipboard";
-import "./GameRoom.scss";
+import Grid from "../Grid/Grid";
+import gameResult from "../utils/gameResult";
 
 // Connexion du websocket client au serveur
 const socket = io(template); //url à changer lors de la mise en production afin de pointer vers le serveur heroku
@@ -22,6 +23,47 @@ function GameRoom() {
 
   const [clipboard, copyToClipboard] = useClipboard();
 
+  const [grid, setGrid] = useState([
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+    {
+      fullfiled: false,
+      value: undefined,
+    },
+  ]);
+
+  const [nbCheckBox, setNbCheckBox] = useState(0);
+
   useEffect(() => {
     socket.emit("join_room", {
       roomId: roomId,
@@ -35,12 +77,32 @@ function GameRoom() {
     });
 
     socket.on("change_turn_client", (data) => {
-      setIndex(data);
+      console.log(data);
+      const { index, updateGrid, nbCheckBox } = data;
+      setIndex(index);
+      setGrid(updateGrid);
+      setNbCheckBox(nbCheckBox);
+
+      // Test pour savoir si un joueur à gagner
+      const gameResult = gameResult(updateGrid);
+
+      if (gameResult === "Player 1 won") {
+        alert("Player 1 won");
+      }
+      // Test si toutes les cases ont été cochées et qu'il a égalité
+      if (nbCheckBox === 9) {
+        alert("Equality, the game is finish");
+      }
     });
   }, [socket]);
 
-  const changeTurn = () => {
-    socket.emit("change_turn", { roomId: roomId, index: index });
+  const changeTurn = (updateGrid) => {
+    socket.emit("change_turn", {
+      roomId: roomId,
+      index: index,
+      updateGrid: updateGrid,
+      nbCheckBox: nbCheckBox,
+    });
   };
 
   return (
@@ -70,6 +132,16 @@ function GameRoom() {
           ) : (
             <h2 className="gameContainer__h2">{players[index]} turn</h2>
           )}
+
+          <Grid
+            grid={grid}
+            setGrid={setGrid}
+            players={players}
+            index={index}
+            changeTurn={changeTurn}
+            socket={socket}
+            roomId={roomId}
+          />
 
           <h3 className="scoreboard__h3">Scoreboard</h3>
           <div className="scoreboard__container">
