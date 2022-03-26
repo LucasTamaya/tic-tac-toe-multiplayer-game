@@ -1,0 +1,57 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin gameForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+@mixin gameFormInput {
+  background-color: transparent;
+  color: $neutral-color-one;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid $neutral-color-one;
+  font-size: 2rem;
+  text-align: center;
+
+  &::placeholder {
+    color: $neutral-color-one;
+  }
+}
+
+@mixin gameFormBtn {
+  width: 80px;
+  margin: 10px;
+
+  button {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: bold;
+    transition: 0.1s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+      -webkit-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+      -moz-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+    }
+  }
+}
+
+@mixin backBtn {
+  color: $main-color-two;
+  background-color: $neutral-color-one;
+}
+
+@mixin goBtn {
+  color: $neutral-color-one;
+  background-color: $main-color-two;
+}

@@ -1,0 +1,26 @@
+@import "../utils/variables";
+@import "../utils/mixins.scss";
+
+.newGameForm {
+  @include gameForm;
+}
+
+.newGameForm__input {
+  @include gameFormInput;
+}
+
+.newGameForm__btnContainer {
+  @include flexCenter;
+}
+
+.newGameForm__btn {
+  @include gameFormBtn;
+}
+
+.back--btn {
+  @include backBtn;
+}
+
+.go--btn {
+  @include goBtn;
+}

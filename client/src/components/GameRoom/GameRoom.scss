@@ -1,0 +1,87 @@
+@import "../utils//variables";
+@import "../utils/mixins";
+
+.roomIsFullError {
+  width: 100vw;
+  height: 100vh;
+  @include flexCenter;
+}
+
+.roomIsFullError__para {
+  color: $neutral-color-one;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.promptContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.911);
+  @include flexCenter;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.promptContainer__h2 {
+  color: $neutral-color-one;
+  font-size: 2.3rem;
+}
+
+.promptContainer__p {
+  color: $neutral-color-one;
+  font-size: 1.5rem;
+}
+
+.promptContainer__span {
+  color: $neutral-color-one;
+  font-weight: bold;
+  font-size: 1.8rem;
+  padding-bottom: 5px;
+  border-bottom: 3px solid $neutral-color-one;
+}
+
+.promptContainer__btn {
+  border: none;
+  background-color: $neutral-color-one;
+  padding: 8px 10px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.534);
+  }
+}
+
+.gameContainer{
+
+}
+
+.gameContainer__h2{
+  color: $neutral-color-one;
+  font-size: 2.3rem;
+}
+
+.scoreboard__h3{
+  text-align: center;
+  font-size: 1.8rem;
+  color: $neutral-color-one;
+}
+
+.scoreboard__container{
+  display: flex;
+  border-top: 1px solid $neutral-color-one;
+}
+
+.scoreboard__item{
+  flex: 1;
+  @include flexCenter;
+  flex-direction: column;
+  &:first-child{
+    border-right: 1px solid $neutral-color-one;
+  }
+
+  span{
+    font-size: 1.5rem;
+    color: $neutral-color-one;
+  }
+}
