@@ -1,3 +1,3 @@
-const template = "http://localhost:1338/"; //url à changer lors de la mise en production afin de pointer vers le serveur heroku
+const template = "https://tic-tac-toe-mutiplayer-game.herokuapp.com/";
 
 export default template;
