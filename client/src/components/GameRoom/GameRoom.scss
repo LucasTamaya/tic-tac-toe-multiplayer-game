@@ -1,5 +1,5 @@
-@import "../utils//variables";
-@import "../utils/mixins";
+@import "../../utils//variables";
+@import "../../utils/mixins";
 
 .roomIsFullError {
   width: 100vw;
@@ -52,39 +52,39 @@
   }
 }
 
-.gameContainer{
+.gameContainer {
   display: flex;
   flex-direction: column;
   row-gap: 25px;
   padding: 30px;
 }
 
-.gameContainer__h2{
+.gameContainer__h2 {
   color: $neutral-color-one;
   font-size: 2.3rem;
   text-align: center;
 }
 
-.scoreboard__h3{
+.scoreboard__h3 {
   text-align: center;
   font-size: 1.8rem;
   color: $neutral-color-one;
 }
 
-.scoreboard__container{
+.scoreboard__container {
   display: flex;
   border-top: 1px solid $neutral-color-one;
 }
 
-.scoreboard__item{
+.scoreboard__item {
   flex: 1;
   @include flexCenter;
   flex-direction: column;
-  &:first-child{
+  &:first-child {
     border-right: 1px solid $neutral-color-one;
   }
 
-  span{
+  span {
     font-size: 1.5rem;
     color: $neutral-color-one;
   }

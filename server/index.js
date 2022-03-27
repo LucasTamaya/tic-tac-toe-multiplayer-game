@@ -40,12 +40,14 @@ io.on("connection", (socket) => {
     console.log("A user just disconnected");
   });
 
+  // Détecte la connexion à une room
   socket.on("join_room", (data) => {
     const { roomId, name } = data;
     socket.join(roomId);
+    // Test afin de voir si la room existe ou non
     const isExistingRoom = existingRoom(roomIdsTab, roomId);
 
-    // si la room n'existe pas encore
+    // Si la room n'existe pas encore
     if (!isExistingRoom) {
       roomIdsTab.push({
         id: roomId,
@@ -53,7 +55,7 @@ io.on("connection", (socket) => {
       });
     }
 
-    // si la room existe deja
+    // Si la room existe deja
     if (isExistingRoom) {
       roomIdsTab.map((x) => {
         if (x.id === roomId) {
@@ -65,45 +67,63 @@ io.on("connection", (socket) => {
         }
       });
     }
-    console.log(roomIdsTab);
+
+    // Récupère le nombre de clients présent dans une room
     let nbClient = io.sockets.adapter.rooms.get(roomId).size;
+
+    // Si deux client sont connectés dans la même room
     if (nbClient === 2) {
-      // récupère les deux joueurs de la room
+      // On récupère le nom des deux joueurs de la room
       let players;
       roomIdsTab.map((x) => {
         if (x.id === roomId) {
           players = x.players;
         }
       });
-      io.to(roomId).emit("start_game", players);
 
-      console.log(players);
+      // On envoit aux clients de la room l'event afin de commencer la partie entre eux
+      io.to(roomId).emit("start_game", players);
     }
+
+    // Si un 3eme joueur ou plus se connecte dans une même room, on déconnecte ce client et on envoit un event d'erreur afin de rediriger le joueur à l'accueil
     if (nbClient > 2) {
       socket.emit("room_full");
       socket.leave();
-      console.log(nbClient);
     }
   });
 
+  // Détecte lorsqu'on coche une case de la grille de jeux
   socket.on("change_turn", (data) => {
-    const { roomId, index, updateGrid, nbCheckBox } = data;
-    console.log(nbCheckBox);
+    const { roomId, index, updateGrid, nbCheckBox, players } = data;
+    // Ici, on fait en sorte d'indiquer que c'est au player 2 de jouer
     if (index === 0) {
+      // Renvoit un event aux clients afin de mettre à jour les valeurs nécessaires
       io.to(roomId).emit("change_turn_client", {
         index: 1,
         updateGrid: updateGrid,
         nbCheckBox: nbCheckBox + 1,
+        players,
       });
     }
-
+    // Ici, on fait en sorte d'indiquer que c'est au player 2 de jouer
     if (index === 1) {
+      // Renvoit un event aux clients afin de mettre à jour les valeurs nécessaires
       io.to(roomId).emit("change_turn_client", {
         index: 0,
         updateGrid: updateGrid,
         nbCheckBox: nbCheckBox + 1,
+        players,
       });
     }
+  });
+
+  // Détecte lorsqu'on souhaite redémarrer une nouvelle partie
+  socket.on("restart_game", (data) => {
+    const { emptyGrid } = data;
+    // Renvoit un event aux clients avec la grille de jeu vide
+    socket.emit("restart_game_client", {
+      emptyGrid: emptyGrid,
+    });
   });
 });
 
@@ -112,5 +132,5 @@ const PORT = process.env.PORT || 1338;
 
 // Démarrage du serveur
 server.listen(PORT, function () {
-  console.log("listening on port :1338");
+  console.log(`Listen on port ${PORT}`);
 });

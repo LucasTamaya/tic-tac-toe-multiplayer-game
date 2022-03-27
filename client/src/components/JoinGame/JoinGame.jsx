@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import template from "../utils/template";
+import template from "../../utils/template";
 import "./JoinGame.scss";
 
 function JoinGame() {

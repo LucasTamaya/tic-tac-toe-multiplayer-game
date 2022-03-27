@@ -1,0 +1,49 @@
+@import "../../utils//variables";
+@import "../../utils/mixins";
+
+.winnerPrompt__bg {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.911);
+  padding: 30px;
+  @include flexCenter;
+}
+
+.winnerPrompt__container {
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  border-radius: 5px;
+  background-color: $main-color-two;
+  @include flexCenter;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.winnerPrompt__para {
+  color: $neutral-color-one;
+  font-size: 1.8rem;
+}
+
+.winnerPrompt__btn {
+  width: 80px;
+  margin: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.1s ease;
+  background-color: $neutral-color-one;
+  color: $main-color-two;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+    -webkit-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.34);
+  }
+}

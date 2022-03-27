@@ -14,7 +14,7 @@ function StartNewGame() {
 
     // Si input vide, on ne fait rien
     if (name === "") {
-      return; 
+      return;
     }
 
     // Si input non vide

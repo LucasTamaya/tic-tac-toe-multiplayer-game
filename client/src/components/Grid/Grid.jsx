@@ -41,15 +41,15 @@ function Grid({ grid, setGrid, players, index, changeTurn }) {
   return (
     <div
       className={`gridContainer ${
-        players[index] === sessionStorage.getItem("name") ? "active" : "disable"
+        players[index] === sessionStorage.getItem("name") ? "active" : "disable" //Permet d'autoriser ou pas les joueurs de cliquer sur la grille selon le play turn
       }`}
     >
       {grid.map((x, index) => (
         <div key={index} className="box" onClick={() => updateGrid(index)}>
           {x.value == "O" ? (
-            <CircleOutlinedIcon />
+            <CircleOutlinedIcon sx={{ fontSize: 75, color: "white" }} /> // Coche la case avec un rond
           ) : x.value == "X" ? (
-            <CloseOutlinedIcon />
+            <CloseOutlinedIcon sx={{ fontSize: 85, color: "white" }} /> // Coche la case avec une croix
           ) : (
             ""
           )}

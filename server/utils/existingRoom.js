@@ -4,7 +4,7 @@ const existingRoom = (roomIdsTab, roomId) => {
   if (roomIdsTab.some((x) => x.id === roomId)) {
     return true;
   } else {
-    console.log(roomId)
+    console.log(roomId);
     // Si la room n'existe pas encore
     return false;
   }
